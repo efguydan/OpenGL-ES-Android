@@ -11,15 +11,43 @@ import android.opengl.GLES10.glColor4f
 class Cube {
 
     private val vertexBuffer: FloatBuffer
+    private var colorBuffer: FloatBuffer
     private val numFaces = 6
 
-    private val colors = arrayOf(// Colors of the 6 faces
-        floatArrayOf(1.0f, 0.5f, 0.0f, 1.0f), // 0. orange
-        floatArrayOf(1.0f, 0.0f, 1.0f, 1.0f), // 1. violet
-        floatArrayOf(0.0f, 1.0f, 0.0f, 1.0f), // 2. green
-        floatArrayOf(0.0f, 0.0f, 1.0f, 1.0f), // 3. blue
-        floatArrayOf(1.0f, 0.0f, 0.0f, 1.0f), // 4. red
-        floatArrayOf(1.0f, 1.0f, 0.0f, 1.0f)   // 5. yellow
+//    private val colors = arrayOf(// Colors of the 6 faces
+//        floatArrayOf(1.0f, 0.5f, 0.0f, 1.0f), // 0. orange
+//        floatArrayOf(1.0f, 0.0f, 1.0f, 1.0f), // 1. violet
+//        floatArrayOf(0.0f, 1.0f, 0.0f, 1.0f), // 2. green
+//        floatArrayOf(0.0f, 0.0f, 1.0f, 1.0f), // 3. blue
+//        floatArrayOf(1.0f, 0.0f, 0.0f, 1.0f), // 4. red
+//        floatArrayOf(1.0f, 1.0f, 0.0f, 1.0f)   // 5. yellow
+//    )
+
+    val colors = floatArrayOf(
+        0.0f, 0.0f, 1.0f, 1.0f,  // 0. blue
+        0.0f, 1.0f, 0.0f, 1.0f,  // 1. green
+        0.0f, 0.0f, 1.0f, 1.0f,  // 2. blue
+        0.0f, 1.0f, 0.0f, 1.0f,  // 3. green
+        1.0f, 0.0f, 0.0f, 1.0f,   // 4. red
+        0.0f, 0.0f, 1.0f, 1.0f,  // 0. blue
+        0.0f, 1.0f, 0.0f, 1.0f,  // 1. green
+        0.0f, 0.0f, 1.0f, 1.0f,  // 2. blue
+        0.0f, 1.0f, 0.0f, 1.0f,  // 3. green
+        1.0f, 0.0f, 0.0f, 1.0f,   // 4. red
+        0.0f, 0.0f, 1.0f, 1.0f,  // 0. blue
+        0.0f, 1.0f, 0.0f, 1.0f,  // 1. green
+        0.0f, 0.0f, 1.0f, 1.0f,  // 2. blue
+        0.0f, 1.0f, 0.0f, 1.0f,  // 3. green
+        1.0f, 0.0f, 0.0f, 1.0f,   // 4. red
+        0.0f, 0.0f, 1.0f, 1.0f,  // 0. blue
+        0.0f, 1.0f, 0.0f, 1.0f,  // 1. green
+        0.0f, 0.0f, 1.0f, 1.0f,  // 2. blue
+        0.0f, 1.0f, 0.0f, 1.0f,  // 3. green
+        1.0f, 0.0f, 0.0f, 1.0f,   // 4. red
+        0.0f, 0.0f, 1.0f, 1.0f,  // 0. blue
+        0.0f, 1.0f, 0.0f, 1.0f,  // 1. green
+        0.0f, 0.0f, 1.0f, 1.0f,  // 2. blue
+        0.0f, 1.0f, 0.0f, 1.0f
     )
 
     private val vertices = floatArrayOf(// Vertices of the 6 faces
@@ -62,6 +90,13 @@ class Cube {
         vertexBuffer = vbb.asFloatBuffer()
         vertexBuffer.put(vertices)
         vertexBuffer.position(0)
+
+        // Setup color-array buffer. Colors in float. An float has 4 bytes
+        val cbb = ByteBuffer.allocateDirect(colors.size * 4)
+        cbb.order(ByteOrder.nativeOrder())
+        colorBuffer = cbb.asFloatBuffer()
+        colorBuffer.put(colors)
+        colorBuffer.position(0)
     }
 
     //Draw the shape
@@ -76,9 +111,16 @@ class Cube {
         // Render all the faces
         for (face in 0 until numFaces) {
             // Set the color for each of the faces
-            gl.glColor4f(colors[face][0], colors[face][1], colors[face][2], colors[face][3])
-            // Draw the primitive from the vertex-array directly
+
+//            gl.glColor4f(colors[face][0], colors[face][1], colors[face][2], colors[face][3])
+//            // Draw the primitive from the vertex-array directly
+
+            gl.glEnableClientState(GL10.GL_COLOR_ARRAY)
+            gl.glColorPointer(4, GL10.GL_FLOAT, 0, colorBuffer)
+
             gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, face * 4, 4)
+
+            gl.glDisableClientState(GL10.GL_COLOR_ARRAY)
         }
         gl.glDisableClientState(GL10.GL_VERTEX_ARRAY)
         gl.glDisable(GL10.GL_CULL_FACE)
