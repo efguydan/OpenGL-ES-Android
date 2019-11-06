@@ -4,7 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.efedaniel.csc514.sample.MainActivity
-import com.efedaniel.csc514.tutorialguy.TutorialActivity
+import com.efedaniel.csc514.tutorialfive.TutorialFiveActivity
+import com.efedaniel.csc514.tutorialfour.TutorialFourActivity
 import kotlinx.android.synthetic.main.activity_selection.*
 
 class SelectionActivity : AppCompatActivity() {
@@ -15,9 +16,11 @@ class SelectionActivity : AppCompatActivity() {
         tut_3.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
-
-        tutorialguy.setOnClickListener {
-            startActivity(Intent(this, TutorialActivity::class.java))
+        tut_4.setOnClickListener {
+            startActivity(Intent(this, TutorialFourActivity::class.java))
+        }
+        tut_5.setOnClickListener {
+            startActivity(Intent(this, TutorialFiveActivity::class.java))
         }
     }
 }

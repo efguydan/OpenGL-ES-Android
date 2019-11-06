@@ -21,7 +21,7 @@ class MyGLSurfaceView(context: Context) : GLSurfaceView(context) {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         val x: Float = event!!.x
-        val y: Float = event!!.y
+        val y: Float = event.y
         when (event.action) {
             MotionEvent.ACTION_MOVE -> {
 

@@ -1,10 +1,10 @@
-package com.efedaniel.csc514.tutorialguy
+package com.efedaniel.csc514.tutorialfive
 
 import android.opengl.GLSurfaceView
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class TutorialActivity : AppCompatActivity() {
+class TutorialFiveActivity : AppCompatActivity() {
 
     private lateinit var glView: GLSurfaceView
 

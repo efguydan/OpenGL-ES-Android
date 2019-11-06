@@ -1,17 +1,14 @@
-package com.efedaniel.csc514.tutorialguy
+package com.efedaniel.csc514.tutorialfour
 
 import android.content.Context
 import android.opengl.GLSurfaceView
 import android.opengl.GLU
-import android.opengl.Matrix
-import com.efedaniel.csc514.tutorialguy.shapes.Square
-import com.efedaniel.csc514.tutorialguy.shapes.Triangle
+import com.efedaniel.csc514.tutorialfour.shapes.Square
+import com.efedaniel.csc514.tutorialfour.shapes.Triangle
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
-import com.efedaniel.csc514.tutorialguy.shapes.Cube
-import com.efedaniel.csc514.tutorialguy.shapes.Pyramid
-
-
+import com.efedaniel.csc514.tutorialfour.shapes.Cube
+import com.efedaniel.csc514.tutorialfour.shapes.Pyramid
 
 class MyGLRenderer(context: Context): GLSurfaceView.Renderer {
 
@@ -61,25 +58,26 @@ class MyGLRenderer(context: Context): GLSurfaceView.Renderer {
 
         // Your OpenGL|ES rendering code here
         gl.glLoadIdentity()
-        gl.glTranslatef(-1.5f, 0.0f, -6.0f)
+        gl.glTranslatef(0.0f, -1.0f, -6.0f)
 
         //Triangle
 //        gl.glRotatef(angleTriangle, 0.0f, 1.0f, 0.0f) //Rotate Triangle about y-axis
 //        triangle.draw(gl)
 
         //Pyramid
+        gl.glScalef(0.6f, 0.6f, 0.8f)
         gl.glRotatef(anglePyramid, 0.1f, 1.0f, -0.1f)
         pyramid.draw(gl)
 
-        gl.glLoadIdentity();
-        gl.glTranslatef(1.5f, 0.0f, -6.0f)
+        gl.glLoadIdentity()
+        gl.glTranslatef(0.0f, 1.0f, -6.0f)
 
         //Square
 //        gl.glRotatef(angleQuad, 1.0f, 0.0f, 0.0f) //Rotate Square about x-axis
 //        square.draw(gl)
 
         //Cube
-        gl.glScalef(0.8f, 0.8f, 0.8f)
+        gl.glScalef(0.6f, 0.6f, 0.8f)
         gl.glRotatef(angleCube, 1.0f, 1.0f, 1.0f)
         cube.draw(gl)
 
