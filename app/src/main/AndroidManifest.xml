@@ -18,6 +18,7 @@
         tools:replace="android:allowBackup">
         <activity android:name=".tutorialfour.TutorialFourActivity"/>
         <activity android:name=".tutorialfive.TutorialFiveActivity"/>
+        <activity android:name=".tutorialsix.TutorialSixActivity"/>
         <activity
             android:name=".SelectionActivity"
             android:colorMode="wideColorGamut"
