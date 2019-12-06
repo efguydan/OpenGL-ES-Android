@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.efedaniel.csc514.sample.MainActivity
 import com.efedaniel.csc514.tutorialfive.TutorialFiveActivity
 import com.efedaniel.csc514.tutorialfour.TutorialFourActivity
+import com.efedaniel.csc514.tutorialseven.TutorialSevenActivity
 import com.efedaniel.csc514.tutorialsix.TutorialSixActivity
 import kotlinx.android.synthetic.main.activity_selection.*
 
@@ -25,6 +26,9 @@ class SelectionActivity : AppCompatActivity() {
         }
         tut_6.setOnClickListener {
             startActivity(Intent(this, TutorialSixActivity::class.java))
+        }
+        tut_7.setOnClickListener {
+            startActivity(Intent(this, TutorialSevenActivity::class.java))
         }
     }
 }
